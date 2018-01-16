@@ -1,7 +1,25 @@
 {
   "name": "kaggle-titanic-deeplearn-js",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "author": "okmttdhr",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "prep": "yarn && mkdirp dist",
+    "watch": "watchify main.ts -p [tsify] -v --debug -o dist/bundle.js",
+    "build": "browserify main.ts -p [tsify] -o dist/bundle.js",
+    "lint": "tslint -p . -t verbose",
+    "deploy": "yarn build && uglifyjs dist/bundle.js -c -m -o dist/bundle.min.js"
+  },
+  "dependencies": {
+    "deeplearn": "^0.4.1"
+  },
+  "devDependencies": {
+    "mkdirp": "~0.5.1",
+    "tsify": "~3.0.3",
+    "tslint": "~5.8.0",
+    "typescript": "~2.6.1",
+    "uglifyjs": "~2.4.11",
+    "watchify": "~3.9.0"
+  }
 }
