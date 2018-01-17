@@ -46,8 +46,9 @@ math.scope((keep, track) => {
 
   const BATCHE_NUM = 500;
   const BATCH_SIZE = xs.length;
-  const LEARNING_RATE = 0.7925;
+  const LEARNING_RATE = 1.13;
   const optimizer = new SGDOptimizer(LEARNING_RATE);
+  console.log('BATCHE_NUM', BATCHE_NUM);
   console.log('LEARNING_RATE', LEARNING_RATE);
 
   for (let i = 0; i < BATCHE_NUM; i++) {
