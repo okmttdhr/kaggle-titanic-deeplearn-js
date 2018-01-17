@@ -12,7 +12,9 @@ import {
   NDArray
 } from 'deeplearn';
 
+import {trainX} from './trainX';
 import {trainY} from './trainY';
+
 const graph: Graph = new Graph();
 const x: Tensor = graph.placeholder("x", [12]);
 const t: Tensor = graph.placeholder('t', []);
@@ -37,6 +39,9 @@ math.scope((keep, track) => {
   const ys: Scalar[] = trainY.map(x => track(Scalar.new(x)));
 
   const shuffledInputProviderBuilder = new InCPUMemoryShuffledInputProviderBuilder([xs, ys]);
+  const provider = shuffledInputProviderBuilder.getInputProviders();
+  // const xProvider = provider[0];
+  // const yProvider = provider[1];
   const [xProvider, yProvider] = shuffledInputProviderBuilder.getInputProviders();
 
   const NUM_BATCHES = 500;

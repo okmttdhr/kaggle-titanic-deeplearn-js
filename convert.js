@@ -16,10 +16,7 @@ const average = (arr) => {
 };
 
 const parser = csv.parse({trim: true}, (err, data) => {
-  // console.log('data', data);
-
   const rows = [];
-  // const age = [];
   data.forEach((columns, index) => {
     if (index === 0 || index === 1) {
       console.log('columns', columns);
@@ -28,42 +25,62 @@ const parser = csv.parse({trim: true}, (err, data) => {
       // console.log('columns[9]', columns[9]);
     }
 
-    // console.log('columns[5]: before', columns[5]);
+    // sex
+    console.log('columns[4]: before', columns[4]);
+    if (columns[4] === 'male') {
+      columns[4] = 0;
+    } else {
+      columns[4] = 1;
+    }
+    console.log('columns[4]: after', columns[4]);
+
+    // age
+    console.log('columns[5]: before', columns[5]);
     const averageAge = 23.79929292929293;
+    // columns[5] = Number(columns[5]);
     if (!columns[5]) {
       columns[5] = averageAge;
       console.log('columns[5]: after', columns[5]);
     }
 
-    const row = columns.filter((c, i) => {
-      // trainX
-      // const isNotPassengerId = i !== 0;
-      // const isNotSurvived = i !== 1;
-      // const isNotName = i !== 3;
-      // const isNotTicket = i !== 8;
-      // const isNotCabin = i !== 10;
-      // if (isNotPassengerId && isNotName && isNotTicket && isNotCabin && isNotSurvived) {
-      //   return true;
-      // }
+    // embarked
+    console.log('columns[11]: before', columns[11]);
+    if (columns[11] === 'C') {
+      columns[11] = 0;
+    } else if (columns[11] === 'Q') {
+      columns[11] = 1;
+    } else {
+      columns[11] = 2;
+    }
+    console.log('columns[11]: after', columns[11]);
 
-      // trainY
-      return i === 1;
-    });
+    const row = columns
+      .filter((c, i) => {
+        // trainX
+        const isNotPassengerId = i !== 0;
+        const isNotSurvived = i !== 1;
+        const isNotName = i !== 3;
+        const isNotTicket = i !== 8;
+        const isNotCabin = i !== 10;
+        if (isNotPassengerId && isNotName && isNotTicket && isNotCabin && isNotSurvived) {
+          return true;
+        }
+
+        // trainY
+        // return i === 1;
+      })
+      .map((c, i) => {
+        return Number(c);
+      })
+      ;
     // }).join(',');
 
     // trainX
-    // rows.push(row);
+    rows.push(row);
 
     // trainY
-    rows.push(columns[1]);
-
-    // if (index !== 0) {
-    //   age.push(Number(columns[9]));
-    // }
+    // rows.push(columns[1]);
   });
-
-  // console.log('age', age);
-  // console.log('average(age)', average(age));
 
   // const csvContent = rows.join('\n');
 
