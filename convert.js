@@ -24,8 +24,8 @@ const parser = csv.parse({trim: true}, (err, data) => {
     if (index === 0 || index === 1) {
       console.log('columns', columns);
       console.log('columns.length', columns.length);
-      console.log('columns[0]', columns[0]);
-      console.log('columns[9]', columns[9]);
+      // console.log('columns[0]', columns[0]);
+      // console.log('columns[9]', columns[9]);
     }
 
     // console.log('columns[5]: before', columns[5]);
@@ -37,12 +37,14 @@ const parser = csv.parse({trim: true}, (err, data) => {
 
     const row = columns.filter((c, i) => {
       const isNotPassengerId = i !== 0;
+      const isNotSurvived = i !== 1;
       const isNotName = i !== 3;
       const isNotTicket = i !== 8;
       const isNotCabin = i !== 10;
-      if (isNotPassengerId && isNotName && isNotTicket && isNotCabin) {
+      if (isNotPassengerId && isNotName && isNotTicket && isNotCabin && isNotSurvived) {
         return true;
       }
+      // return i === 1;
     }).join(',');
 
     rows.push(row);
