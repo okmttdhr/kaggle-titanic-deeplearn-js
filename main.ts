@@ -44,13 +44,13 @@ math.scope((keep, track) => {
   const provider = shuffledInputProviderBuilder.getInputProviders();
   const [xProvider, yProvider] = shuffledInputProviderBuilder.getInputProviders();
 
-  const NUM_BATCHES = 500;
+  const BATCHE_NUM = 500;
   const BATCH_SIZE = xs.length;
   const LEARNING_RATE = 0.7925;
   const optimizer = new SGDOptimizer(LEARNING_RATE);
   console.log('LEARNING_RATE', LEARNING_RATE);
 
-  for (let i = 0; i < NUM_BATCHES; i++) {
+  for (let i = 0; i < BATCHE_NUM; i++) {
     const costValue = session.train(
         cost,
         [{tensor: x, data: xProvider}, {tensor: t, data: yProvider}],
