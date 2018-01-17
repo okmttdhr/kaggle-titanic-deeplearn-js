@@ -36,18 +36,27 @@ const parser = csv.parse({trim: true}, (err, data) => {
     }
 
     const row = columns.filter((c, i) => {
-      const isNotPassengerId = i !== 0;
-      const isNotSurvived = i !== 1;
-      const isNotName = i !== 3;
-      const isNotTicket = i !== 8;
-      const isNotCabin = i !== 10;
-      if (isNotPassengerId && isNotName && isNotTicket && isNotCabin && isNotSurvived) {
-        return true;
-      }
-      // return i === 1;
-    }).join(',');
+      // trainX
+      // const isNotPassengerId = i !== 0;
+      // const isNotSurvived = i !== 1;
+      // const isNotName = i !== 3;
+      // const isNotTicket = i !== 8;
+      // const isNotCabin = i !== 10;
+      // if (isNotPassengerId && isNotName && isNotTicket && isNotCabin && isNotSurvived) {
+      //   return true;
+      // }
 
-    rows.push(row);
+      // trainY
+      return i === 1;
+    });
+    // }).join(',');
+
+    // trainX
+    // rows.push(row);
+
+    // trainY
+    rows.push(columns[1]);
+
     // if (index !== 0) {
     //   age.push(Number(columns[9]));
     // }
@@ -56,10 +65,11 @@ const parser = csv.parse({trim: true}, (err, data) => {
   // console.log('age', age);
   // console.log('average(age)', average(age));
 
-  // console.log('rows', rows);
-  const csvContent = rows.join('\n');
+  // const csvContent = rows.join('\n');
 
-  wstream.write(csvContent);
+  wstream.write(JSON.stringify(rows));
+  // wstream.write(JSON.stringify(rows));
+  // wstream.write(csvContent);
 });
 
 

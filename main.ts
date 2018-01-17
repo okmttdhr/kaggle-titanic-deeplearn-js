@@ -12,6 +12,7 @@ import {
   NDArray
 } from 'deeplearn';
 
+import {trainY} from './trainY';
 const graph: Graph = new Graph();
 const x: Tensor = graph.placeholder("x", [12]);
 const t: Tensor = graph.placeholder('t', []);
