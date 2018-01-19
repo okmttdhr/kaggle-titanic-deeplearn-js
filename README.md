@@ -29,5 +29,5 @@ Check the GPU process.
 
 ## Model
 
-- SGD
 - Multilayer Perceptron
+- SGD
