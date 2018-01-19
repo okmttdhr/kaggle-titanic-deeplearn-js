@@ -1,5 +1,5 @@
 
-# Kaggle's Titanic Tutorial with deeplearn.js
+# [Kaggle's Titanic Tutorial](https://www.kaggle.com/c/titanic) with deeplearn.js
 
 ## Demo
 
