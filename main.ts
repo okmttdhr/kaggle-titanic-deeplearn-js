@@ -47,9 +47,10 @@ math.scope((keep, track) => {
   const BATCHE_NUM = 500;
   const BATCH_SIZE = xs.length;
   const LEARNING_RATE = 1.13;
-  const optimizer = new SGDOptimizer(LEARNING_RATE);
   console.log('BATCHE_NUM', BATCHE_NUM);
   console.log('LEARNING_RATE', LEARNING_RATE);
+
+  const optimizer = new SGDOptimizer(LEARNING_RATE);
 
   for (let i = 0; i < BATCHE_NUM; i++) {
     const costValue = session.train(
@@ -62,14 +63,14 @@ math.scope((keep, track) => {
     console.log('cost', costValue.get());
   }
 
-  const results = [];
-  for (let i = 0; i < trainX.length; i++) {
-    const result: NDArray = session.eval(y, [{tensor: x, data: track(Array1D.new(trainX[i]))}]);
-    let r = result.getValues()[0] > 0.5 ? 1 : 0;
-    const isCorrect = r === trainY[i]
-    console.log('isCorrect', isCorrect);
-    results.push(isCorrect);
-  }
-  console.log('results', results)
-  console.log('correct', `${results.filter((r) => r).length} / ${results.length}`)
+  // const results = [];
+  // for (let i = 0; i < trainX.length; i++) {
+  //   const result: NDArray = session.eval(y, [{tensor: x, data: track(Array1D.new(trainX[i]))}]);
+  //   let r = result.getValues()[0] > 0.5 ? 1 : 0;
+  //   const isCorrect = r === trainY[i]
+  //   console.log('isCorrect', isCorrect);
+  //   results.push(isCorrect);
+  // }
+  // console.log('results', results)
+  // console.log('correct', `${results.filter((r) => r).length} / ${results.length}`)
 });

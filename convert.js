@@ -2,10 +2,8 @@ const csv = require('csv');
 const fs = require('fs');
 const path = require('path');
 
-// const FILE = path.join(__dirname, '../../Downloads/ml/test.csv');
 const FILE = path.join(__dirname, '../../Downloads/ml/train.csv');
 const wstream = fs.createWriteStream('./temp.csv');
-// const wstream = fs.createWriteStream('./temp2.csv');
 
 const sum = (arr) => {
   return arr.reduce((prev, current, i, arr) => {
